@@ -1,0 +1,24 @@
+namespace: test-istio
+chart: https://github.com/rancher/charts/raw/dev-v2.5/assets/rancher-istio/rancher-istio-1.6.800.tgz
+targets:
+- name: dev
+  values:
+    replication: false
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: test
+  values:
+    replicas: 3
+  clusterSelector:
+    matchLabels:
+      env: test
+
+- name: prod
+  values:
+    serviceType: LoadBalancer
+    replicas: 3
+  clusterSelector:
+    matchLabels:
+      env: prod
