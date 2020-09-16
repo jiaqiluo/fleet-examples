@@ -1,0 +1,23 @@
+namespace: test-mysql
+targets:
+- name: dev
+  values:
+    replication: false
+  clusterSelector:
+    matchLabels:
+      env: dev
+
+- name: test
+  values:
+    replicas: 3
+  clusterSelector:
+    matchLabels:
+      env: test
+
+- name: prod
+  values:
+    serviceType: LoadBalancer
+    replicas: 3
+  clusterSelector:
+    matchLabels:
+      env: prod
