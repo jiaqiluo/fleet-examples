@@ -1,0 +1,12 @@
+namespace: test
+helm:
+  # The release name to use. If empty a generated release name will be used
+  releaseName: mongo
+  chart: "mongodb"
+  repo: "https://charts.bitnami.com/bitnami"
+  version: ""
+  force: false
+  timeoutSeconds: 0
+  values:
+    auth:
+      enabled: false
