@@ -1,26 +1,32 @@
 namespace: fleet-mc-helm-example
+helm:
+  values:
+    cluster-display-name: global.fleet.clusterLabels.management.cattle.io/cluster-display-name
 targetCustomizations:
 - name: dev
   helm:
     values:
       replication: false
+      cluster-id: global.fleet.clusterLabels.management.cattle.io/cluster-name
   clusterSelector:
     matchLabels:
-      env: dev
+      management.cattle.io/cluster-display-name: cluster1
 
 - name: test
   helm:
     values:
       replicas: 3
+      cluster-id: global.fleet.clusterLabels.management.cattle.io/cluster-name
   clusterSelector:
     matchLabels:
-      env: test
+      management.cattle.io/cluster-display-name: cluster2
 
 - name: prod
   helm:
     values:
       serviceType: LoadBalancer
       replicas: 3
+      cluster-id: global.fleet.clusterLabels.management.cattle.io/cluster-name
   clusterSelector:
     matchLabels:
-      env: prod
+      management.cattle.io/cluster-display-name: cluster3
